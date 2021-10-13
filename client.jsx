@@ -1,16 +1,18 @@
-// import React from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-// export const hello = 'hello';
-// export default NumberBaseball;
+import NumberBaseball from './NumberBaseball';
+
+ReactDOM.render(<NumberBaseball />, document.querySelector('#root'));
 
 // node module 문법
 // const React = require('react');
 // exports.hello = 'hello';
 // module.exports = NumberBaseball;
 
-const React = require('react');
-const ReactDom = require('react-dom');
+// const React = require('react');
+// const ReactDom = require('react-dom');
 
-const NumberBaseball = require('./NumberBaseball');
+// const NumberBaseball = require('./NumberBaseball');
 
-ReactDom.render(<NumberBaseball />, document.querySelector('#root'));
+// ReactDom.render(<NumberBaseball />, document.querySelector('#root'));
