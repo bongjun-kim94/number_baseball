@@ -20,32 +20,27 @@ const NumberBaseball = () => {
     const onSubmitForm = (e) => {
         e.preventDefault();
         if (value == answer.join('')) {
-            setTries((t) => {[
+            setTries((t) => ([
                 ...t,
                 {
-                    try: value,
-                    result: '홈런!',
+                  try: value,
+                  result: '홈런!',
                 }
-            ]});
+              ]));
             setResult('홈런');
-            // setTries((prevState) => {
-            //     return [...prevState.tries, { try: value, result: '홈런'}]
-            // });
-
             alert('게임을 다시 시작합니다');
             setValue('');
             setAnswer(getNumbers()),
             setTries([]);
         } else { // 틀렸을시
-            const answerArray = value.split('').map((V) => parseInt(v));
+            const answerArray = value.split('').map((v) => parseInt(v));
             let strike = 0;
             let ball = 0;
             if (tries.length >= 9) {
                 setResult(`10번을 넘게 시도해서 실패! 답은 ${answer.join(',')}였습니다`);
-
                 alert('게임을 다시 시작합니다');
                 setValue('');
-                setAnswer(getNumbers()),
+                setAnswer(getNumbers());
                 setTries([]);
             } else {
                 console.log('답은', answer.join(','));
@@ -59,7 +54,7 @@ const NumberBaseball = () => {
                     }
                 }
 
-                setTries(t => ([
+                setTries((t) => ([
                     ...t,
                     {
                       try: value,
@@ -84,14 +79,12 @@ const NumberBaseball = () => {
             </form>
             <div>시도 : {tries.length}</div>
             <ul>
-                {tries.map((v, i) => {
-                    return(
-                        <Try key={`${i + 1}차 시도 : ${v.try}`} tryInfo={v}/>
-                    );
-                })}
+                {tries.map((v, i) => (
+                    <Try key={`${i + 1}차 시도 : ${v.try}`} tryInfo={v}/>
+                ))}
             </ul>
         </>
     );
-}
+};
 
 export default NumberBaseball;
