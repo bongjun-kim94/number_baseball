@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import Try from './Try';
 
 function getNumbers(){// 숫자 4개 겹치지 않고 뽑아주는 함수
@@ -18,7 +18,7 @@ const NumberBaseball = () => {
     const [tries, setTries] = useState([]);
     const inputEl = useRef(null);
 
-    const onSubmitForm = (e) => {
+    const onSubmitForm = useCallback((e) => {
         e.preventDefault();
         if (value == answer.join('')) {
             setTries((t) => ([
@@ -68,7 +68,7 @@ const NumberBaseball = () => {
                 inputEl.current.focus();
             }
         }
-    };
+    }, [value, answer]);
 
     const onChangeInput = (e) => {
         setValue(e.target.value);
@@ -78,7 +78,7 @@ const NumberBaseball = () => {
         <>
             <h1>{result}</h1>
             <form onSubmit={onSubmitForm}>
-                <input maxLength={4} value={value} onChange={onChangeInput} />
+                <input ref={inputEl} maxLength={4} value={value} onChange={onChangeInput} />
                 <button>입력!</button>
             </form>
             <div>시도 : {tries.length}</div>
