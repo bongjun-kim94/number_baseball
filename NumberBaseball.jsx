@@ -70,9 +70,7 @@ const NumberBaseball = () => {
         }
     }, [value, answer]);
 
-    const onChangeInput = (e) => {
-        setValue(e.target.value);
-    };
+    const onChangeInput = useCallback((e) => { setValue(e.target.value), []});
 
     return (
         <>
