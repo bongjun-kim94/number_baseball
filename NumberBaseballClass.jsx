@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import Try from './Try';
 
 function getNumbers(){// 숫자 4개 겹치지 않고 뽑아주는 함수
@@ -41,7 +41,7 @@ class NumberBaseball extends Component {
                 answer: getNumbers(),
                 tries: [],
             });
-            this.inputRef.focus();
+            this.inputRef.current.focus();
         } else { // 틀렸을시
             const answerArray = value.split('').map((V) => parseInt(v));
             let strike = 0;
@@ -56,7 +56,7 @@ class NumberBaseball extends Component {
                     answer: getNumbers(),
                     tries: [],
                 });
-                this.inputRef.focus();
+                this.inputRef.current.focus();
             } else {
                 for (let i = 0; i< 4; i+= 1) {
                     if(answerArray[i] === answer[i]) {
@@ -70,7 +70,7 @@ class NumberBaseball extends Component {
                             value: '',
                         };
                     });
-                    this.inputRef.focus();
+                    this.inputRef.current.focus();
                 }
             }
         }
@@ -83,9 +83,7 @@ class NumberBaseball extends Component {
         });
     };
 
-    inputRef;
-
-    onInputRef = (a) => { this.inputRef = a};
+    inputRef = createRef();
 
     render() {
         const { result, value, tries } = this.state;
@@ -93,7 +91,7 @@ class NumberBaseball extends Component {
             <>
                 <h1>{result}</h1>
                 <form onSubmit={this.onSubmitForm}>
-                    <input ref={this.onInputRef} maxLength={4} value={value} onChange={this.onChangeInput} />
+                    <input ref={this.inputRef} maxLength={4} value={value} onChange={this.onChangeInput} />
                 </form>
                 <div>시도 : {tries.length}</div>
                 <ul>
