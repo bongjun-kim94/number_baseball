@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import Try from './Try';
 
-function getNumbers(){// 숫자 4개 겹치지 않고 뽑아주는 함수
+const getNumbers = () => {// 숫자 4개 겹치지 않고 뽑아주는 함수
     const candidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const array = [];
     for (let i=0; i<4; i+=1){
